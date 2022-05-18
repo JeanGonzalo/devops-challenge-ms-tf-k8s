@@ -1,4 +1,4 @@
-import { ClientProxySuperFlights } from './../common/proxy/client-proxy';
+import { ClientProxySendEmails } from './../common/proxy/client-proxy';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserDTO } from 'src/user/dto/user.dto';
@@ -7,7 +7,7 @@ import { UserMSG } from 'src/common/constants';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly clientProxy: ClientProxySuperFlights,
+    private readonly clientProxy: ClientProxySendEmails,
     private readonly jwtService: JwtService,
   ) {}
 

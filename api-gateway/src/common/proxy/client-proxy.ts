@@ -8,7 +8,7 @@ import {
 import { RabbitMQ } from '../constants';
 
 @Injectable()
-export class ClientProxySuperFlights {
+export class ClientProxySendEmails {
   constructor(private readonly config: ConfigService) {}
 
   clientProxyUsers(): ClientProxy {
@@ -17,6 +17,16 @@ export class ClientProxySuperFlights {
       options: {
         urls: this.config.get('AMQP_URL'),
         queue: RabbitMQ.UserQueue,
+      },
+    });
+  }
+
+  clientProxyEmails(): ClientProxy {
+    return ClientProxyFactory.create({
+      transport: Transport.RMQ,
+      options: {
+        urls: this.config.get('AMQP_URL'),
+        queue: RabbitMQ.EmailQueue,
       },
     });
   }

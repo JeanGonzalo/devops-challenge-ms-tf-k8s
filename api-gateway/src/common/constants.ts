@@ -1,5 +1,6 @@
 export enum RabbitMQ {
     UserQueue = 'users',
+    EmailQueue = 'emails',
   }
   
   export enum UserMSG {
@@ -10,4 +11,12 @@ export enum RabbitMQ {
     DELETE = 'DELETE_USER',
     VALID_USER = 'VALID_USER',
   }
-  
+
+  export enum EmailMSG {
+    CREATE = 'CREATE_EMAIL',
+    FIND_ALL = 'FIND_EMAILS',
+    FIND_ONE = 'FIND_EMAIL',
+    UPDATE = 'UPDATE_EMAIL',
+    DELETE = 'DELETE_EMAIL',
+    VALID_EMAIL = 'VALID_EMAIL',
+  }
