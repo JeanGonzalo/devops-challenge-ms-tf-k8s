@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+  app:
+    image: app_emails:v1
+    container_name: app_emails
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    env_file: .env.example
+    ports: 
+        - 80:3000
+    depends_on:
+      - rabbitmq
+    restart: always
+    networks:
+      - ms_nestjs
+
+  microservice-emails:
+    image: microservice-emails:v1
+    container_name: microservice-emails
+    build:
+      context: ./microservices-emails
+      dockerfile: Dockerfile
+    env_file: .env.example
+    depends_on:
+      - rabbitmq
+    restart: always
+    networks:
+      - ms_nestjs
+
+  microservice-users:
+    image: microservice-users:v1
+    container_name: microservice-users
+    build:
+      context: ./microservices-users
+      dockerfile: Dockerfile
+    env_file: .env.example
+    depends_on:
+      - rabbitmq
+    restart: always
+    networks:
+      - ms_nestjs
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    expose:
+      - 5672
+      - 15672
+    restart: always
+    networks:
+      - ms_nestjs
+
+networks:
+  ms_nestjs:
