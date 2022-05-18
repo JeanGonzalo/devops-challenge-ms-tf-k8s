@@ -33,18 +33,18 @@ export class EmailController {
     return this._clientProxyEmail.send(EmailMSG.FIND_ALL, '');
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string): Observable<IEmail> {
-    return this._clientProxyEmail.send(EmailMSG.FIND_ONE, id);
+  @Get()
+  findOne(): Observable<IEmail> {
+    return this._clientProxyEmail.send(EmailMSG.FIND_ONE,'');
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() emailDTO: EmailDTO): Observable<IEmail> {
-    return this._clientProxyEmail.send(EmailMSG.UPDATE, { id, emailDTO });
+  @Put()
+  update(): Observable<IEmail> {
+    return this._clientProxyEmail.send(EmailMSG.UPDATE, '' );
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: string): Observable<any> {
-    return this._clientProxyEmail.send(EmailMSG.DELETE, id);
+  @Delete()
+  delete(): Observable<any> {
+    return this._clientProxyEmail.send(EmailMSG.DELETE, '');
   }
 }

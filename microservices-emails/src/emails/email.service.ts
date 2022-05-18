@@ -14,29 +14,35 @@ export class EmailService {
     return await this.model.findOne({ from });
   }
 
-  async create(emailDTO: EmailDTO): Promise<IEmail> {
+  async create(emailDTO: EmailDTO) {
     const newEmail = new this.model({ ...emailDTO });
-    return await newEmail.save();
-  }
-
-  async findAll(): Promise<IEmail[]> {
-    return await this.model.find();
-  }
-
-  async findOne(id: string): Promise<IEmail> {
-    return await this.model.findById(id);
-  }
-
-  async update(id: string, emailDTO: EmailDTO): Promise<IEmail> {
-    const email = { ...emailDTO};
-    return await this.model.findByIdAndUpdate(id, email, { new: true });
-  }
-
-  async delete(id: string) {
-    await this.model.findByIdAndDelete(id);
+    await newEmail.save();
     return {
-      status: HttpStatus.OK,
-      msg: 'Deleted',
+      msg: `Hello ${emailDTO.to} your message will be send `,
+    };
+  }
+
+  async findAll() {
+    return {
+      msg: 'ERROR',
+    };
+  }
+
+  async findOne() {
+    return {
+      msg: 'ERROR',
+    };
+  }
+
+  async update() {
+    return {
+      msg: 'ERROR',
+    };
+  }
+
+  async delete() {
+    return {
+      msg: 'ERROR',
     };
   }
 }

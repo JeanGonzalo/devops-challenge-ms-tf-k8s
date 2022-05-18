@@ -19,25 +19,17 @@ export class EmailController {
   }
 
   @MessagePattern(EmailMsg.FIND_ONE)
-  findOne(@Payload() id: string) {
-    return this.emailService.findOne(id);
+  findOne() {
+    return this.emailService.findOne();
   }
   @MessagePattern(EmailMsg.UPDATE)
-  update(@Payload() payload: any) {
-    return this.emailService.update(payload.id, payload.emailDTO);
+  update() {
+    return this.emailService.update();
   }
 
   @MessagePattern(EmailMsg.DELETE)
-  delete(@Payload() id: string) {
-    return this.emailService.delete(id);
+  delete() {
+    return this.emailService.delete();
   }
 
-  @MessagePattern(EmailMsg.VALID_EMAIL)
-  async validateEmail(@Payload() payload) {
-    const email = await this.emailService.findByEmail(payload.from);
-
-    if (email ) return email;
-
-    return null;
-  }
 }
